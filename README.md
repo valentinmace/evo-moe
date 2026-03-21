@@ -52,7 +52,9 @@ The evolutionary loop acts as a global optimization framework. In this work we u
 
 Similar to the evaluation step of RLHF. A pre-trained reward model ([GRM-Llama3.2-3B](https://huggingface.co/Ray2333/GRM-Llama3.2-3B-rewardmodel-ft)) provides the signal:
 
-$$\text{fitness}(\theta) = \mathbb{E}_{\text{prompt}} \Big[ \text{RewardModel}\!\big(\text{prompt},\; \text{Generate}_\theta(\text{prompt})\big) \Big]$$
+$$
+fitness(\theta) = E_{prompt} [ RewardModel(prompt, Generate_{\theta}(prompt)) ]
+$$
 
 For each solution (router): set the router's weights in the LLM, generate a full response for every
 evaluation prompt, score each (prompt, response) pair with the reward model,
@@ -70,13 +72,20 @@ Uses a [DPO](https://arxiv.org/abs/2305.18290)-inspired objective that avoids
 generation entirely. 
 
 A language model is fundamentally a machine that assigns probabilities to
-sequences of tokens: $P(x_1, x_2, \dots, x_n) = \prod_{t=1}^{n} P(x_t \mid x_1, \dots, x_{t-1})$. The DPO
-fitness exploits this directly. Given a preference dataset
+sequences of tokens:
+
+$$
+P(x_1, x_2, ..., x_n) = \prod_{t=1}^{n} P(x_t \mid x_1, ..., x_{t-1})
+$$
+
+The DPO fitness exploits this directly. Given a preference dataset
 ([UltraFeedback](https://huggingface.co/datasets/HuggingFaceH4/ultrafeedback_binarized))
 where each example contains a prompt, a *chosen* (preferred) response, and a
 *rejected* response:
 
-$$\text{fitness}(\theta) = \mathbb{E}_{(\text{chosen},\, \text{rejected})} \Big[ \log P_\theta(\text{chosen} \mid \text{prompt}) - \log P_\theta(\text{rejected} \mid \text{prompt}) \Big]$$
+$$
+fitness(\theta) = E_{(chosen, rejected)} [ \log P_{\theta}(chosen \mid prompt) - \log P_{\theta}(rejected \mid prompt) ]
+$$
 
 A good router should assign higher probability to preferred responses.
 
