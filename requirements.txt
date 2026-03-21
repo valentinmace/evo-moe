@@ -1,0 +1,15 @@
+# Core ML stack
+torch>=2.3.0
+torchvision                # must match torch version; install via: pip install torchvision --index-url https://download.pytorch.org/whl/cu124
+transformers>=4.45.0
+accelerate>=0.26.0
+bitsandbytes>=0.43.0   # 4-bit quantisation
+
+# Dataset
+datasets>=2.14.0
+
+# Utilities
+numpy>=1.24.0
+tqdm>=4.65.0
+matplotlib>=3.7.0   # for plot_results.py
+pytest>=7.4.0       # for tests/

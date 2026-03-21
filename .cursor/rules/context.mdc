@@ -1,0 +1,17 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+We are working on a small project to developp clean, professional code. This project is for me to test a research idea: can evolutionary algorithms/QD methods help to train experts in mixture of experts (MoE) in LLMs?
+
+Let's make the code commented, readable and typed.
+
+
+Je veux faire ce projet pour tester une idée, j'aimerais essayer de voir si les algos evolutionnaires peuvent aider à entrainer les LLMs d'une manière ou d'une autre.
+
+Mon idée pour commencer est 1. de prendre la MoE de la dernière couche d'un Transformer et de considérer les experts comme une population de solutions qu'on voudrait faire évoluer via algo évo, ou QD, ou ES, enfin ce genre d'algos en somme. 2. de figer tous les poids du Transformer hormis cette MoE, et d'appliquer l'évo search à ces experts (ou eventuellement au routeur, ça peut être intéressant aussi). Cette manière de faire nous donne un avantage, on peut constituer un "dataset" d'activations, c'est à dire faire plein d'inférences avec notre transformer et stocker la dernière couche d'activation juste avant la dernière MoE, et à partir de là lancer notre algo évo sur les experts du MoE qui prennent en entrée les données du dataset (activations) sans avoir à refaire des inférences (car on peut compute la fin du modèle à partir des activations) ni à calculer de gradient car les algos évo sont blackbox. 3. Le score (la fitness d'une solution) est donné par un reward model standard déjà entrainé opensource.
+
+Dans un premier temps il est question de mettre en place tout ça et de commencer à voir si il y a des difficultés, si ça peut marcher etc. Une question que je me pose c'est : Quel dataset j'utilise pour faire tout ça, par là je veux dire que ce qu'on fait c'est un tout petit peu dans la veine du RLHF, on fine tune notre modèle quelque part, donc il faut un dataset de prompts qui nous servira à faire les inférences et à générer les rewards via le reward model.
+
+Sachant que je n'ai pas un gros setup, j'ai uniquement une 2080ti (~12GB VRAM) et un i9 avec 48gb de RAM, je ne peux pas faire des expériences à une grande échelle et on se contentera de petits modèles, à la fois pour le LLM en question mais aussi pour le reward model. Par exemple, Qwen2.5-MoE-3B me parait peut être pas mal pour le LLM et pour le reward model il existe Skywork-Reward-Llama-3.1-8B, ArmoRM-Llama3-8B ou encore Starling-RM-34B. Surtout n'hésite pas à me faire des propositions à ce sujet, je suis complètement ouvert à d'autres modèles si ça peut être plus pertinent à la fois pour le LLM ou pour le reward model.

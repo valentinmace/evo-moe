@@ -1,0 +1,6 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+When writing Python, please type the code, it is very important. Don't type all variables everywhere this will mess up readability, type functions, their arguments etc, where it allow better understanding of the code. Thank you.  

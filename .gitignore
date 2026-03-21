@@ -1,0 +1,25 @@
+# Downloaded model weights
+models/
+
+# Dataset and activation cache
+data/
+
+# Experiment outputs (large .pt checkpoints)
+outputs/
+
+# Python artefacts
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+env/
+
+# Environment
+.env
+
+# Jupyter
+.ipynb_checkpoints/

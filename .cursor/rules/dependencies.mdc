@@ -1,0 +1,6 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+When you suggest new code or modification to the current code implying the use of a new package, please also do not forget to propose to install it in the relevant file (Dockerfile or requirement.txt or else depending on the context).
