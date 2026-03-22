@@ -6,7 +6,7 @@
 
 ## The Idea
 
-Fine-tuning large language models is expensive. Even parameter-efficient methods
+Fine-tuning large language models is expensive. Even parameter-efficient (PEFT) methods
 like LoRA still require backpropagation, gradient computation, and to keep optimizer
 states.
 
